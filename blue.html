@@ -19,7 +19,136 @@
             align-items: center;
             margin: 0;
             padding: 20px;
-        }}
+        }
+
+        .weather-container {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            min-width: 300px;
+        }
+        
+        h1 {
+            margin: 0 0 20px 0;
+            font-size: 2.5em;
+        }
+        
+        input {
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            margin: 10px;
+            width: 200px;
+        }
+        
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+            background: #ff5252;
+        }
+        
+        .weather-info {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+        }
+        
+        .temp {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .error {
+            color: #ff6b6b;
+            margin-top: 20px;
+        }
     </style>
 </head>
+<body>
+    <div class="weather-container">
+        <h1>🌤️ Weather App</h1>
+        <input type="text" id="cityInput" placeholder="Enter city name (e.g., London)">
+        <button onclick="getWeather()">Get Weather</button>
+        
+        <div id="weatherResult" class="weather-info" style="display: none;">
+            <h2 id="cityName"></h2>
+            <div class="temp" id="temperature"></div>
+            <div id="description"></div>
+            <div id="humidity"></div>
+        </div>
+        
+        <div id="errorMessage" class="error"></div>
+    </div>
+
+    <script>
+        // This is a demo version using mock data
+        // For a real API, you'd need to sign up for a free API key at OpenWeatherMap.org
+        
+        function getWeather() {
+            const city = document.getElementById('cityInput').value;
+            
+            if (!city) {
+                showError('Please enter a city name!');
+                return;
+            }
+            
+            // For demo purposes, we're using mock weather data
+            // This simulates what real weather data would look like
+            const mockWeatherData = {
+                'london': { temp: '12°C', desc: 'Cloudy ☁️', humidity: 'Humidity: 78%' },
+                'new york': { temp: '18°C', desc: 'Sunny ☀️', humidity: 'Humidity: 65%' },
+                'tokyo': { temp: '22°C', desc: 'Clear skies 🌤️', humidity: 'Humidity: 55%' },
+                'paris': { temp: '15°C', desc: 'Light rain 🌧️', humidity: 'Humidity: 82%' },
+                'sydney': { temp: '25°C', desc: 'Hot and sunny 🔥', humidity: 'Humidity: 45%' }
+            };
+            
+            const cityLower = city.toLowerCase();
+            
+            if (mockWeatherData[cityLower]) {
+                const weather = mockWeatherData[cityLower];
+                displayWeather(city, weather.temp, weather.desc, weather.humidity);
+            } else {
+                // For any city not in our demo list, show a generic response
+                displayWeather(city, '22°C', 'Partly cloudy ⛅', 'Humidity: 70%');
+                document.getElementById('errorMessage').innerHTML = 'Note: Using demo data. For real weather data, sign up for a free API key at OpenWeatherMap.org';
+            }
+        }
+        
+        function displayWeather(city, temp, desc, humidity) {
+            document.getElementById('cityName').textContent = city.toUpperCase();
+            document.getElementById('temperature').textContent = temp;
+            document.getElementById('description').textContent = desc;
+            document.getElementById('humidity').textContent = humidity;
+            document.getElementById('weatherResult').style.display = 'block';
+            document.getElementById('errorMessage').innerHTML = '';
+        }
+        
+        function showError(message) {
+            document.getElementById('errorMessage').innerHTML = message;
+            document.getElementById('weatherResult').style.display = 'none';
+        }
+        
+        // Allow pressing Enter key to search
+        document.getElementById('cityInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                getWeather();
+            }
+        });
+    </script>
+</body>
 </html>
