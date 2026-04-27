@@ -1,9 +1,9 @@
 <!-- HTML comment -->
 <!-- I was going to comment soething but forgot the thang. -->
 
-<html lang=""en">
+<html lang="en">
 <head>
-    <meta charset=""UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wether App</title> <!-- Tab Title -->
     <style>
@@ -238,12 +238,12 @@
 </head>
 <body>
     <div class="dashboard">
-        <h1>🌤️ Weather App</h1>
-        <div class="subtitle">Scroll horizontally to see all weather panels ➡️</div>
+        <h1> Wether App</h1>
+        <div class="subtitle">Learn about today's weather conditions!</div>
 
         <!-- Search Panel -->
         <div class="search-panel">
-            <input type="text" id="cityInput" placeholder="Enter city name (e.g., London)">
+            <input type="text" id="cityInput" placeholder="Enter city name (e.g., London, Seattle, Dubai)">
             <button onclick="getWeather()">Get Weather</button>
         </div>
 
@@ -251,7 +251,7 @@
         <div class="panels-container" id="panelsContainer">
             <!-- Panel 1 - Small -->
             <div class="panel panel-small">
-                <h3>🌡️ Current Temp</h3>
+                <h3> Current Temp</h3>
                 <div class="temp">--°C</div>
                 <div class="description">Click "Get Weather"</div>
                 <div class="extra-info">Feels like: --°C</div>
@@ -259,7 +259,7 @@
 
             <!-- Panel 2 - Medium -->
             <div class="panel panel-medium">
-                <h3>💧 Humidity</h3>
+                <h3> Humidity</h3>
                 <div class="temp">--%</div>
                 <div class="description">Moisture Level</div>
                 <div class="extra-info">Comfort: --</div>
@@ -267,33 +267,17 @@
 
             <!-- Panel 3 - Large -->
             <div class="panel panel-large">
-                <h3>🌬️ Wind Speed</h3>
+                <h3> Wind Speed</h3>
                 <div class="temp">-- km/h</div>
                 <div class="description">Wind Direction</div>
                 <div class="extra-info">Gusts: -- km/h</div>
             </div>
 
-            <!-- Panel 4 - Dark -->
-            <div class="panel panel-dark">
-                <h3>🔆 UV Index</h3>
-                <div class="temp">--</div>
-                <div class="description">Sun Intensity</div>
-                <div class="extra-info">Protection: --</div>
-            </div>
-
-            <!-- Panel 5 - Warm -->
-            <div class="panel panel-warm">
-                <h3>🌅 Sunrise/Sunset</h3>
-                <div class="temp">🌄 --:--</div>
-                <div class="description">🌇 --:--</div>
-                <div class="extra-info">Day length: --h</div>
-            </div>
-
-            <!-- Panel 6 - Cool -->
+            <!-- Panel 4 - Cool -->
             <div class="panel panel-cool">
-                <h3>📅 Forecast</h3>
+                <h3> Forecast</h3>
                 <div class="temp">3-Day</div>
-                <div class="description">☀️ 🌧️ ⛅</div>
+                <div class="description">Upcoming weather forecast</div>
                 <div class="extra-info">More details soon</div>
             </div>
         </div>
@@ -316,65 +300,88 @@
     </div>
 
     <script>
-        // This is a demo version using mock data
-        // For a real API, you'd need to sign up for a free API key at OpenWeatherMap.org
+        /*  This is a demo version using mock data,
+            Open-meteo API integration coming soon...
+        */
         
-        // Expanded mock weather data with all panel info
+        // Complete mock weather data for all cities
         const mockWeatherData = {
+            // Original cities
             'london': { 
-                temp: '12°C', 
-                feelsLike: '10°C',
-                desc: 'Cloudy ☁️', 
-                humidity: '78%',
-                wind: '15 km/h',
-                windDir: 'NW',
-                uv: '3',
-                sunrise: '06:45',
-                sunset: '19:30'
+                temp: '12°C', feelsLike: '10°C', desc: 'Cloudy', humidity: '78%',
+                wind: '15 km/h', windDir: 'NW', uv: '3', sunrise: '06:45', sunset: '19:30'
             },
             'new york': { 
-                temp: '18°C', 
-                feelsLike: '17°C',
-                desc: 'Sunny ☀️', 
-                humidity: '65%',
-                wind: '12 km/h',
-                windDir: 'SW',
-                uv: '5',
-                sunrise: '06:30',
-                sunset: '19:15'
+                temp: '18°C', feelsLike: '17°C', desc: 'Sunny', humidity: '65%',
+                wind: '12 km/h', windDir: 'SW', uv: '5', sunrise: '06:30', sunset: '19:15'
             },
             'tokyo': { 
-                temp: '22°C', 
-                feelsLike: '24°C',
-                desc: 'Clear skies 🌤️', 
-                humidity: '55%',
-                wind: '8 km/h',
-                windDir: 'E',
-                uv: '7',
-                sunrise: '05:45',
-                sunset: '18:30'
+                temp: '22°C', feelsLike: '24°C', desc: 'Clear skies', humidity: '55%',
+                wind: '8 km/h', windDir: 'E', uv: '7', sunrise: '05:45', sunset: '18:30'
             },
             'paris': { 
-                temp: '15°C', 
-                feelsLike: '14°C',
-                desc: 'Light rain 🌧️', 
-                humidity: '82%',
-                wind: '20 km/h',
-                windDir: 'N',
-                uv: '2',
-                sunrise: '07:00',
-                sunset: '20:00'
+                temp: '15°C', feelsLike: '14°C', desc: 'Light rain', humidity: '82%',
+                wind: '20 km/h', windDir: 'N', uv: '2', sunrise: '07:00', sunset: '20:00'
             },
             'sydney': { 
-                temp: '25°C', 
-                feelsLike: '27°C',
-                desc: 'Hot and sunny 🔥', 
-                humidity: '45%',
-                wind: '18 km/h',
-                windDir: 'SE',
-                uv: '8',
-                sunrise: '06:15',
-                sunset: '19:45'
+                temp: '25°C', feelsLike: '27°C', desc: 'Hot and sunny', humidity: '45%',
+                wind: '18 km/h', windDir: 'SE', uv: '8', sunrise: '06:15', sunset: '19:45'
+            },
+            
+            // US Cities
+            'seattle': { 
+                temp: '14°C', feelsLike: '13°C', desc: 'Drizzly', humidity: '85%',
+                wind: '10 km/h', windDir: 'SW', uv: '2', sunrise: '06:50', sunset: '19:40'
+            },
+            'los angeles': { 
+                temp: '24°C', feelsLike: '25°C', desc: 'Perfect beach weather', humidity: '55%',
+                wind: '8 km/h', windDir: 'W', uv: '8', sunrise: '06:25', sunset: '19:10'
+            },
+            'houston': { 
+                temp: '28°C', feelsLike: '31°C', desc: 'Hot and humid', humidity: '75%',
+                wind: '12 km/h', windDir: 'S', uv: '7', sunrise: '06:40', sunset: '19:35'
+            },
+            'washington dc': { 
+                temp: '20°C', feelsLike: '19°C', desc: 'Partly cloudy', humidity: '60%',
+                wind: '14 km/h', windDir: 'N', uv: '5', sunrise: '06:35', sunset: '19:25'
+            },
+            'miami': { 
+                temp: '29°C', feelsLike: '33°C', desc: 'Tropical paradise', humidity: '80%',
+                wind: '16 km/h', windDir: 'SE', uv: '9', sunrise: '06:55', sunset: '19:50'
+            },
+            
+            // European Cities
+            'berlin': { 
+                temp: '11°C', feelsLike: '9°C', desc: 'Overcast', humidity: '72%',
+                wind: '18 km/h', windDir: 'W', uv: '2', sunrise: '06:15', sunset: '19:55'
+            },
+            'moscow': { 
+                temp: '6°C', feelsLike: '3°C', desc: 'Cold and breezy', humidity: '68%',
+                wind: '22 km/h', windDir: 'N', uv: '1', sunrise: '05:30', sunset: '19:00'
+            },
+            
+            // Middle East
+            'dubai': { 
+                temp: '35°C', feelsLike: '40°C', desc: 'Scorching hot', humidity: '40%',
+                wind: '12 km/h', windDir: 'NW', uv: '10', sunrise: '06:00', sunset: '18:45'
+            },
+            
+            // Asian Cities
+            'singapore': { 
+                temp: '30°C', feelsLike: '34°C', desc: 'Thunderstorms possible', humidity: '85%',
+                wind: '8 km/h', windDir: 'NE', uv: '8', sunrise: '07:05', sunset: '19:15'
+            },
+            'hong kong': { 
+                temp: '26°C', feelsLike: '28°C', desc: 'Humid and hazy', humidity: '82%',
+                wind: '14 km/h', windDir: 'E', uv: '6', sunrise: '06:20', sunset: '18:50'
+            },
+            'beijing': { 
+                temp: '16°C', feelsLike: '15°C', desc: 'Smoggy', humidity: '58%',
+                wind: '10 km/h', windDir: 'N', uv: '4', sunrise: '05:55', sunset: '18:40'
+            },
+            'seoul': { 
+                temp: '17°C', feelsLike: '16°C', desc: 'Cherry blossom season', humidity: '62%',
+                wind: '11 km/h', windDir: 'W', uv: '5', sunrise: '06:10', sunset: '19:05'
             }
         };
         
@@ -393,19 +400,12 @@
                 weather = mockWeatherData[cityLower];
                 document.getElementById('errorMessage').innerHTML = '';
             } else {
-                // Default demo data for unknown cities
+                // Default fake data for unknown cities
                 weather = {
-                    temp: '22°C',
-                    feelsLike: '21°C',
-                    desc: 'Partly cloudy ⛅',
-                    humidity: '70%',
-                    wind: '10 km/h',
-                    windDir: 'Variable',
-                    uv: '4',
-                    sunrise: '06:30',
-                    sunset: '19:00'
+                    temp: '22°C', feelsLike: '21°C', desc: 'Partly cloudy', humidity: '70%',
+                    wind: '10 km/h', windDir: 'Variable', uv: '4', sunrise: '06:30', sunset: '19:00'
                 };
-                document.getElementById('errorMessage').innerHTML = 'Note: Using demo data. For real weather data, sign up for a free API key at OpenWeatherMap.org';
+                document.getElementById('errorMessage').innerHTML = 'Note: You typed a city not on the list, but don\'t worry the open-meteo API is coming soon, fake data is shown in the meantime!';
             }
             
             displayWeather(city, weather);
@@ -429,7 +429,8 @@
             
             // Update Panel 2 - Humidity
             panels[1].querySelector('.temp').textContent = weather.humidity;
-            let comfort = parseInt(weather.humidity) > 70 ? 'Humid' : (parseInt(weather.humidity) < 40 ? 'Dry' : 'Comfortable');
+            let humidityValue = parseInt(weather.humidity);
+            let comfort = humidityValue > 70 ? 'Humid' : (humidityValue < 40 ? 'Dry' : 'Comfortable');
             panels[1].querySelector('.extra-info').textContent = `Comfort: ${comfort}`;
             
             // Update Panel 3 - Wind
@@ -442,8 +443,8 @@
             panels[3].querySelector('.extra-info').textContent = `Protection: ${protection}`;
             
             // Update Panel 5 - Sunrise/Sunset
-            panels[4].querySelector('.temp').innerHTML = `🌄 ${weather.sunrise}`;
-            panels[4].querySelector('.description').innerHTML = `🌇 ${weather.sunset}`;
+            panels[4].querySelector('.temp').innerHTML = `${weather.sunrise}`;
+            panels[4].querySelector('.description').innerHTML = `${weather.sunset}`;
         }
         
         function showError(message) {
